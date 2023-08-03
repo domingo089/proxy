@@ -16,28 +16,28 @@ services:
   jenkins:
     image: jenkins/jenkins:lts
     volumes:
-      - /opt/jenkins/jenkins_home:/var/jenkins_home
+      - ../proyects/jenkins/jenkins_home:/var/jenkins_home
     labels:
       - "traefik.http.routers.jenkins.rule=Host(`jenkins.rmastertv.com`)"
 
   wpages-1:
     image: nginx:alpine
     volumes:
-      - ./wpages/html:/usr/share/nginx/html
+      - ../wpages/html:/usr/share/nginx/html
     labels:
       - "traefik.http.routers.wpages-1.rule=Host(`rmastertv.com`)"
 
   wpages-2:
     image: nginx:alpine
     volumes:
-      - ./wpages-2/html:/usr/share/nginx/html
+      - ../wpages-2/html:/usr/share/nginx/html
     labels:
       - "traefik.http.routers.wpages-2.rule=Host(`computacion.rmastertv.com`)"
   
   wpages-3:
     image: nginx:alpine
     volumes:
-      - ./wpages-3:/usr/share/nginx/html
+      - ../wpages-3:/usr/share/nginx/html
     labels:
     - "traefik.http.routers.wpages-3.rule=Host(`logistica.rmastertv.com`)"
 
