@@ -11,7 +11,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     labels:
-      - "traefik.http.routers.traefik.rule=Host(`traefik.localhost`)"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.rmastertv.com`)"
       - "traefik.http.services.traefik.loadbalancer.server.port=8080"
 
   jenkins:
@@ -27,7 +27,7 @@ services:
     volumes:
       - ../wpages/html:/usr/share/nginx/html
     labels:
-      - "traefik.http.routers.wpages-1.rule=Host(`localhost`)"
+      - "traefik.http.routers.wpages-1.rule=Host(`rmastertv.com`)"
 
   wpages-2:
     image: nginx:alpine
