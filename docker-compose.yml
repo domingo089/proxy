@@ -19,7 +19,7 @@ services:
     volumes:
       - jenkins_home:/var/jenkins_home
     labels:
-      - "traefik.http.routers.jenkins.rule=Host(`jenkins.localhost`)"
+      - "traefik.http.routers.jenkins.rule=Host(`jenkins.rmastertv.com`)"
       - "traefik.http.services.jenkins.loadbalancer.server.port=8080"
 
   wpages-1:
@@ -34,14 +34,14 @@ services:
     volumes:
       - ../wpages-2/html:/usr/share/nginx/html
     labels:
-      - "traefik.http.routers.wpages-2.rule=Host(`computacion.localhost`)"
+      - "traefik.http.routers.wpages-2.rule=Host(`computacion.rmastertv.com`)"
   
   wpages-3:
     image: nginx:alpine
     volumes:
       - ../wpages-3/html:/usr/share/nginx/html
     labels:
-    - "traefik.http.routers.wpages-3.rule=Host(`logistica.localhost`)"
+    - "traefik.http.routers.wpages-3.rule=Host(`logistica.rmastertv.com`)"
 
 volumes:
   jenkins_home:
