@@ -18,7 +18,15 @@ services:
         - auth
       tls:
         certResolver: default
-        
+
+        labels:
+      - traefik.enable=true
+      - traefik.http.routers.yourservicename.entryPoints=web-secure
+      - traefik.http.routers.yourservicename.rule=Host(`subdomain.your.domain`)
+      - traefik.http.routers.yourservicename.tls=true
+      - traefik.http.routers.yourservicename.middlewares=user:password
+      - traefik.http.services.yourservicename.loadbalancer.server.port=serviceport    
+
   jenkins:
     image: jenkins/jenkins:lts
     volumes:
