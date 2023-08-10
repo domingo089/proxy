@@ -19,7 +19,7 @@ services:
       tls:
         certResolver: default
 
-        labels:
+       labels:
       - traefik.enable=true
       - traefik.http.routers.yourservicename.entryPoints=web-secure
       - traefik.http.routers.yourservicename.rule=Host(`subdomain.your.domain`)
