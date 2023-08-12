@@ -1,8 +1,4 @@
-version: '3'
-
-services:
-
-  traefik:
+traefik:
     image: traefik:v2.0
     command: --api.insecure=true --providers.docker
     ports:
@@ -10,9 +6,16 @@ services:
       - 443:443  
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - /home/ubuntu/proyects/proxy/acme.json:/acme.json
+      - /home/ubuntu/proyects/proxy/config.yml:/config.yml
+
     labels:
       - "traefik.http.routers.traefik.rule=Host(`traefik.rmastertv.com`)"
       - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+      - "traefik.http.middlewares.auth.basicauth.users=domingo08:{SHA}bHyjRfY/g1yzU/8VvWxeBS7Ajno="
+      - "traefik.http.routers.apache.entrypoints=websecurity"
+      - "traefik.http.routers.apache.tls.certresolver=myresolver"
+
 
   jenkins:
     image: jenkins/jenkins:lts
